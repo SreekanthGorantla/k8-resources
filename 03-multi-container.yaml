@@ -1,0 +1,12 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: multi-containers
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+  - name: almalinux
+    image: almalinux:9
+    # For test purpose we are giving a command to keep it running the almalinux image
+    command: ["sleep", "1000"]
