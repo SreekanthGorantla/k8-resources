@@ -19,7 +19,7 @@ metadata:
     purpose: "ens-static-demo"
 spec:
   nodeSelector:
-    topolody.kubernetes.io/zone: us-east-1c
+    topology.kubernetes.io/zone: us-east-1c
   containers:
   - name: nginx
     image: nginx
