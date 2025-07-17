@@ -10,3 +10,37 @@ spec:
   resources:
     requests:
       storage: 10Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ebs-static
+  labels:
+    purpose: "ens-static-demo"
+spec:
+  nodeSelector:
+    topolody.kubernetes.io/zone: us-east-1c
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts:
+    - name: persistent-storage
+      mountPath: /usr/share/nginx/html
+  volumes:
+  - name: persistent-storage
+    persistentVolumeClaim:
+      claimName: ebs-static
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-lb 
+spec:
+  type: LoadBalancer
+  selector:
+    purpose: "ens-static-demo"
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 30006
