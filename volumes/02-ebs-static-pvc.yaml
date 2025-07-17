@@ -16,7 +16,7 @@ kind: Pod
 metadata:
   name: ebs-static
   labels:
-    purpose: "ens-static-demo"
+    purpose: "ebs-static-demo"
 spec:
   nodeSelector:
     topology.kubernetes.io/zone: us-east-1c
@@ -38,7 +38,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    purpose: "ens-static-demo"
+    purpose: "ebs-static-demo"
   ports:
   - protocol: TCP
     port: 80
